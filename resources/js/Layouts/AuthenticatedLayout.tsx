@@ -31,7 +31,34 @@ export default function Authenticated({
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
                                 >
-                                    Dashboard
+                                    Nouvelle demande
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('request')}
+                                    active={route().current('request')}
+                                >
+                                    Anciennes demandes
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('approvals')}
+                                    active={route().current('approvals')}
+                                >
+                                    En attente
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('users')}
+                                    active={route().current('users')}
+                                >
+                                    Utilisateurs
                                 </NavLink>
                             </div>
                         </div>
@@ -67,14 +94,14 @@ export default function Authenticated({
                                         <Dropdown.Link
                                             href={route('profile.edit')}
                                         >
-                                            Profile
+                                            Profil
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route('logout')}
                                             method="post"
                                             as="button"
                                         >
-                                            Log Out
+                                            Me déconnecter
                                         </Dropdown.Link>
                                     </Dropdown.Content>
                                 </Dropdown>
@@ -135,7 +162,34 @@ export default function Authenticated({
                             href={route('dashboard')}
                             active={route().current('dashboard')}
                         >
-                            Dashboard
+                            Template
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="space-y-1 pb-3 pt-2">
+                        <ResponsiveNavLink
+                            href={route('request')}
+                            active={route().current('request')}
+                        >
+                            Requests
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="space-y-1 pb-3 pt-2">
+                        <ResponsiveNavLink
+                            href={route('approvals')}
+                            active={route().current('approvals')}
+                        >
+                            Approvals
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="space-y-1 pb-3 pt-2">
+                        <ResponsiveNavLink
+                            href={route('users')}
+                            active={route().current('users')}
+                        >
+                            Utilisateurs
                         </ResponsiveNavLink>
                     </div>
 
