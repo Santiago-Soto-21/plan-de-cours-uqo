@@ -1,3 +1,4 @@
+import axios from 'axios';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -46,11 +47,25 @@ export default function Dashboard() {
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-
-        post(route('generatePlan'), {
-            onFinish: () => {
-                // Optionally reset fields after submission
+    
+        axios.post(route('generate.pdf'), data, {
+            responseType: 'blob',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
             },
+        })
+        .then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'plan-de-cours.pdf');
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+        })
+        .catch((error) => {
+            console.error('PDF download failed', error);
         });
     };
 
@@ -180,7 +195,7 @@ export default function Dashboard() {
                                 </div>
 
                                 <div className="mt-4 flex items-center justify-end">
-                                    <PrimaryButton className="ms-4" disabled={processing}>
+                                    <PrimaryButton type="submit" className="ms-4" disabled={processing}>
                                         GÉNÉRER PLAN DE COURS
                                     </PrimaryButton>
 
