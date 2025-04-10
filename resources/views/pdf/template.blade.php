@@ -4,6 +4,18 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>UQO - DII - Plan du cours INF1563</title>
     <meta name="author" content="Baaziz, Nadia" />
+    <style>
+        @font-face {
+          font-family: 'verdana';
+          font-style: normal;
+          font-weight: 400;
+          src: url('{{ resource_path('fonts/verdana/verdana.ttf') }}') format('truetype');
+        }
+
+        body {
+            font-family: 'verdana', sans-serif;
+        }
+    </style>
     <style type="text/css">
       * {
         margin: 0;
@@ -800,6 +812,8 @@
       <tr style="height: 67pt">
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 569pt;
             border-top-style: solid;
@@ -862,6 +876,8 @@
       <tr style="height: 39pt">
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 569pt;
             border-top-style: solid;
@@ -1028,6 +1044,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1116,6 +1134,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1132,9 +1152,6 @@
             border-right-color: #000001;
           "
         >
-          <p style="padding-top: 3pt; text-indent: 0pt; text-align: left">
-            <br />
-          </p>
           <p
                 class="s5"
                 style="
@@ -1202,6 +1219,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1262,8 +1281,6 @@
           </p>
         </td>
       </tr>
-    </table>
-    <table
       style="border-collapse: collapse; margin-left: 6.255pt"
       cellspacing="0"
     >
@@ -1295,6 +1312,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1383,6 +1402,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1474,6 +1495,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1567,6 +1590,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1659,6 +1684,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1747,6 +1774,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1835,6 +1864,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -1923,6 +1954,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -2011,6 +2044,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -2071,69 +2106,6 @@
           </p>
         </td>
       </tr>
-    </table>
-    <table
-      style="border-collapse: collapse; margin-left: 6.255pt"
-      cellspacing="0"
-    >
-      <tr style="height: 16pt">
-        <td
-          style="
-            width: 49pt;
-            border-top-style: solid;
-            border-top-width: 1pt;
-            border-top-color: #000001;
-            border-left-style: solid;
-            border-left-width: 1pt;
-            border-left-color: #000001;
-            border-bottom-style: solid;
-            border-bottom-width: 1pt;
-            border-bottom-color: #000001;
-            border-right-style: solid;
-            border-right-width: 1pt;
-            border-right-color: #000001;
-          "
-        >
-          <p style="text-indent: 0pt; text-align: left"><br /></p>
-        </td>
-        <td
-          style="
-            width: 418pt;
-            border-top-style: solid;
-            border-top-width: 1pt;
-            border-top-color: #000001;
-            border-left-style: solid;
-            border-left-width: 1pt;
-            border-left-color: #000001;
-            border-bottom-style: solid;
-            border-bottom-width: 1pt;
-            border-bottom-color: #000001;
-            border-right-style: solid;
-            border-right-width: 1pt;
-            border-right-color: #000001;
-          "
-        >
-        </td>
-        <td
-          style="
-            width: 102pt;
-            border-top-style: solid;
-            border-top-width: 1pt;
-            border-top-color: #000001;
-            border-left-style: solid;
-            border-left-width: 1pt;
-            border-left-color: #000001;
-            border-bottom-style: solid;
-            border-bottom-width: 1pt;
-            border-bottom-color: #000001;
-            border-right-style: solid;
-            border-right-width: 1pt;
-            border-right-color: #000001;
-          "
-        >
-          <p style="text-indent: 0pt; text-align: left"><br /></p>
-        </td>
-      </tr>
       <tr style="height: 109pt">
         <td
           style="
@@ -2162,6 +2134,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -2257,6 +2231,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -2349,6 +2325,8 @@
         </td>
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 418pt;
             border-top-style: solid;
@@ -2440,6 +2418,8 @@
       <tr style="height: 66pt">
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 569pt;
             border-top-style: solid;
@@ -2704,6 +2684,8 @@
       <tr style="height: 214pt">
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
             padding-bottom: 7pt;
             width: 569pt;
             border-left-style: solid;
