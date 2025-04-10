@@ -412,7 +412,7 @@
         padding-left: 0pt;
       }
       #l24 > li > *:first-child:before {
-        content: " ";
+        content: "• ";
         color: black;
         font-family: Symbol, serif;
         font-style: normal;
@@ -464,6 +464,35 @@
       tbody {
         vertical-align: top;
         overflow: visible;
+      }
+      li[data-list="bullet"] > *:first-child:before {
+        content: "• ";
+        color: black;
+        font-family: Symbol, serif;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: none;
+        font-size: 11pt;
+      }
+      li {
+        display: block;
+      }
+      ol {
+        counter-reset: c1 1;
+      }
+      li[data-list="ordered"] > *:first-child:before {
+        counter-increment: c1;
+        content: counter(c1, decimal) ". ";
+        color: black;
+        font-style: normal;
+        font-weight: normal;
+        text-decoration: none;
+      }
+      li[data-list="ordered"]:first-child > *:first-child:before {
+        counter-increment: c1 0;
+      }
+      li {
+        display: block;
       }
     </style>
   </head>
