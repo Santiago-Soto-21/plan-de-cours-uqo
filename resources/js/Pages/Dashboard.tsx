@@ -195,11 +195,11 @@ export default function Dashboard() {
                                 </div>
 
                                 <div className="mt-4 flex items-center justify-end">
-                                    <PrimaryButton type="submit" className="ms-4" disabled={processing}>
+                                    <PrimaryButton className="ms-4" disabled={processing}>
                                         GÉNÉRER PLAN DE COURS
                                     </PrimaryButton>
 
-                                    <SecondaryButton className="ml-2 flex items-center justify-end">
+                                    <SecondaryButton type="submit" className="ml-2 flex items-center justify-end">
                                         APERÇU
                                     </SecondaryButton>
                                 </div>
