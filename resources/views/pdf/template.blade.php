@@ -564,7 +564,7 @@
             "
           >
             Sigle : <span style="color: #000">{!! $data['sigle'] !!} </span> Gr.
-            <span style="color: #000">01</span>
+            <span style="color: #000">{!! $data['groupe'] !!}</span>
           </p>
           <p
             class="s1"
@@ -577,7 +577,7 @@
           >
             Titre :
             <span style="color: #000"
-              >Théorie des langages et calculabilité </span
+              >{!! $data['titreCours'] !!} </span
             >
             <br />
             Session :
@@ -592,7 +592,7 @@
                 font-size: 10pt;
               "
               target="_blank"
-              >Hiver 2025 </a
+              >{!! $data['trimestre'] !!} </a
             ><span
               style="
                 color: black;
@@ -602,10 +602,14 @@
                 text-decoration: underline;
                 font-size: 10pt;
               "
-              >Horaire et local</span
-            >
+              >
+              <a
+              href="https://etudier.uqo.ca/horaire"
+              style="color: #000"
+              >Horaire et local</a>
+              </span>
             <br />
-            Professeur : <span style="color: #000">Yapi, N’Dah Daniel</span>
+            Professeur : <span style="color: #000">{!! $data['nomProf'] !!}, {!! $data['prenomProf'] !!}</span>
           </p>
         </td>
       </tr>
@@ -677,10 +681,7 @@
               text-align: left;
             "
           >
-            <a name="bookmark1">Au terme de ce cours, l&#39;étudiant.e
-            sera initié aux différents modèles de calcul; sera familier avec la
-            théorie des langages formels; aura une compréhension des limitations
-            des ordinateurs.</a>
+            <a name="bookmark1">{!! $data['objectifContent'] !!}</a>
           </p>
           <p style="text-indent: 0pt; text-align: left"><br /></p>
           <p
@@ -699,17 +700,12 @@
               text-align: justify;
             "
           >
-            Langages réguliers et automates finis. Langages hors contexte et
-            automates à pile. Grammaires contextuelles. Hiérarchie de Chomsky.
-            Machines de Turing. Hypothèse de Church. Calculabilité et
-            déterminisme. Classes de complexité. Problèmes indécidables.
-            Introduction à la calculabilité quantique. Ce cours comporte des
-            séances obligatoires de travaux dirigés (TD).
+            {!! $data['contenu'] !!}
           </p>
           <p style="text-indent: 0pt; text-align: left"><br /></p>
           <p style="padding-left: 6pt; text-indent: 0pt; text-align: left">
             <a
-              href="https://etudier.uqo.ca/cours/description-cours/INF1723"
+              href="{{ 'https://etudier.uqo.ca/cours/description-cours/' . $data['sigle'] }}"
               class="s6"
               >Descriptif – Annuaire</a
             >
@@ -744,6 +740,9 @@
       <tr style="height: 94pt">
         <td
           style="
+            padding-left: 6pt;
+            font-size: 9pt;
+            padding-bottom: 7pt;
             padding-right: 6pt;
             width: 569pt;
             border-left-style: solid;
@@ -758,56 +757,18 @@
           "
           colspan="3"
         >
-          <ol id="l1">
-            <li data-list-text="1.">
-              <p
+        <p
                 class="s5"
                 style="
-                  padding-top: 2pt;
+                  padding-top: 7pt;
                   padding-left: 36pt;
                   text-indent: -17pt;
-                  text-align: justify;
+                  line-height: 12pt;
+                  text-align: left;
                 "
               >
-                Initier l&#39;étudiant(e) aux fondements théoriques de
-                l&#39;informatique;
+                {!! $data['objectifs'] !!}
               </p>
-            </li>
-            <li data-list-text="2.">
-              <p
-                class="s5"
-                style="
-                  padding-left: 36pt;
-                  padding-right: 1pt;
-                  text-indent: -18pt;
-                  text-align: justify;
-                "
-              >
-                Familiariser l&#39;étudiant(e) avec la théorie des langages et
-                calculabilité et à son application à la construction des
-                logiciels, des langages de programmation et ses compilateurs;
-              </p>
-            </li>
-            <li data-list-text="3.">
-              <p
-                class="s5"
-                style="
-                  padding-left: 36pt;
-                  padding-right: 1pt;
-                  text-indent: -18pt;
-                  text-align: justify;
-                "
-              >
-                Familiariser l&#39;étudiant(e) avec les limites posées par les
-                ordinateurs contemporains et quantiques : introduire la classe
-                de problèmes indécidables (impossibles à résoudre) et la classe
-                de fonctions incalculables. Problème de déterminisme en
-                informatique. L&#39;étudiant(e) se rendra compte de ce qu’il est
-                possible et de ce qui n&#39;est pas possible de réaliser à
-                l&#39;aide des ordinateurs contemporains et quantiques.
-              </p>
-            </li>
-          </ol>
         </td>
       </tr>
       <tr style="height: 17pt">
@@ -1131,7 +1092,7 @@
               text-align: center;
             "
           >
-            13 janv. 2025
+            {!! $data['semaines'][0] !!}
           </p>
         </td>
       </tr>
@@ -1216,7 +1177,7 @@
             class="s5"
             style="padding-right: 3pt; text-indent: 0pt; text-align: center"
           >
-            20 janv. 2025
+            {!! $data['semaines'][1] !!}
           </p>
         </td>
       </tr>
@@ -1306,7 +1267,7 @@
               text-align: center;
             "
           >
-            27 janv. 2025
+            {!! $data['semaines'][2] !!}
           </p>
         </td>
       </tr>
@@ -1399,7 +1360,7 @@
               text-align: center;
             "
           >
-            3 fév. 2025
+            {!! $data['semaines'][3] !!}
           </p>
         </td>
       </tr>
@@ -1492,7 +1453,7 @@
               text-align: center;
             "
           >
-            10 fev. 2025
+            {!! $data['semaines'][4] !!}
           </p>
         </td>
       </tr>
@@ -1583,7 +1544,7 @@
               text-align: center;
             "
           >
-            17 fev. 2025
+            {!! $data['semaines'][5] !!}
           </p>
         </td>
       </tr>
@@ -1677,7 +1638,7 @@
               text-align: center;
             "
           >
-            24 fev. 2025
+            {!! $data['semaines'][6] !!}
           </p>
         </td>
       </tr>
@@ -1771,7 +1732,7 @@
               text-align: center;
             "
           >
-            3 au 7 mars 2025
+            {!! $data['semaines'][7] !!}
           </p>
         </td>
       </tr>
@@ -1861,7 +1822,7 @@
               text-align: center;
             "
           >
-            10 mars 2025
+            {!! $data['semaines'][8] !!}
           </p>
         </td>
       </tr>
@@ -1951,7 +1912,7 @@
               text-align: center;
             "
           >
-            17 mars 2025
+            {!! $data['semaines'][9] !!}
           </p>
         </td>
       </tr>
@@ -2041,7 +2002,7 @@
               text-align: center;
             "
           >
-            24 mars 2025
+            {!! $data['semaines'][10] !!}
           </p>
         </td>
       </tr>
@@ -2131,7 +2092,7 @@
               text-align: center;
             "
           >
-            31 mars 2025
+            {!! $data['semaines'][11] !!}
           </p>
         </td>
       </tr>
@@ -2224,7 +2185,7 @@
               text-align: center;
             "
           >
-            07 avril 2025
+            {!! $data['semaines'][12] !!}
           </p>
         </td>
       </tr>
@@ -2318,7 +2279,7 @@
               text-align: center;
             "
           >
-            14 avril 2025
+            {!! $data['semaines'][13] !!}
           </p>
         </td>
       </tr>
@@ -2412,7 +2373,7 @@
               text-align: center;
             "
           >
-            21 avril 2025
+            {!! $data['semaines'][14] !!}
           </p>
         </td>
       </tr>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseDataController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PdfController;
 use Illuminate\Foundation\Application;
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/fetch-course-data', [CourseDataController::class, 'fetchCourseData'])->name('fetch.course.data');
 
 Route::post('/generate-pdf', [PdfController::class, 'generate'])->name('generate.pdf');
 
