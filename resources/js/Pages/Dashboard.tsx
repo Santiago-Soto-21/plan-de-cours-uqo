@@ -155,7 +155,9 @@ export default function Dashboard() {
         ? contenuMatch[1].replace(/<[^>]*>/g, "").trim()
         : "Contenu not found";
 
-      const semaines = generateWeeklyDates(response.data.schedule[0].LstActCrs[0].CollActCrsHor[0].DateDHor);
+      const semaines = generateWeeklyDates(
+        response.data.schedule[0].LstActCrs[0].CollActCrsHor[0].DateDHor
+      );
 
       const newData = {
         ...data,
@@ -167,7 +169,7 @@ export default function Dashboard() {
         nomProf: response.data.schedule[0].LstActCrs[0].LstEnsei[0].Nom,
         prenomProf: response.data.schedule[0].LstActCrs[0].LstEnsei[0].Prenom,
         objectifContent: objectifsContent,
-        contenu: contenuContent
+        contenu: contenuContent,
       };
 
       return newData;
@@ -176,11 +178,9 @@ export default function Dashboard() {
     }
   };
 
-  const submit: FormEventHandler = async (e) => {
+  const handlePreview: FormEventHandler = async (e) => {
     e.preventDefault();
-
     const updatedData = await fetchCourseData(data.sigle, data.trimestreCode);
-
     axios
       .post(route("generate.pdf"), updatedData, {
         responseType: "blob",
@@ -202,9 +202,34 @@ export default function Dashboard() {
         link.remove();
       })
       .catch((error) => {
-        console.error("PDF download failed", error);
+        console.error("PDF preview download failed", error);
       });
-  };
+};
+
+const handleSubmit: FormEventHandler = async (e) => {
+    e.preventDefault();
+    const updatedData = await fetchCourseData(data.sigle, data.trimestreCode);
+    axios
+      .post(route("submit.pdf"), updatedData, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRF-TOKEN":
+            document
+              .querySelector('meta[name="csrf-token"]')
+              ?.getAttribute("content") || "",
+        },
+      })
+      .then((response) => {
+        // Handle successful submission
+        if (response.data.success) {
+          // Show success message or notification
+          alert("Le plan de cours a été soumis avec succès");
+        }
+      })
+      .catch((error) => {
+        console.error("PDF submission failed", error);
+      });
+};
 
   // Define a common toolbar configuration for basic formatting options
   const toolbarOptions = {
@@ -240,7 +265,7 @@ export default function Dashboard() {
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
             <div className="p-6 text-gray-900 dark:text-gray-100">
-              <form onSubmit={submit}>
+              <form>
                 {/* Section 1: Sigle du cours, groupe et session */}
                 <div>
                   <InputLabel
@@ -463,13 +488,16 @@ export default function Dashboard() {
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
-                  <PrimaryButton className="ms-4" disabled={processing}>
-                    GÉNÉRER PLAN DE COURS
+                  <PrimaryButton
+                    className="ms-4"
+                    disabled={processing}
+                    onClick={handleSubmit}
+                  >
+                    SOUMETTRE PLAN DE COURS
                   </PrimaryButton>
-
                   <SecondaryButton
-                    type="submit"
                     className="ml-2 flex items-center justify-end"
+                    onClick={handlePreview}
                   >
                     APERÇU
                   </SecondaryButton>
