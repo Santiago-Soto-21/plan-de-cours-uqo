@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use App\Models\Request as PdfRequest; // Aliased to avoid conflict with Illuminate\Http\Request
 
 class PdfController extends Controller
 {
@@ -35,7 +38,7 @@ class PdfController extends Controller
         $pdf = Pdf::loadView('pdf.template', compact('data'));
         
         // Generate a unique filename using timestamp and random string
-        $filename = 'PLAN-DE-COURS-' . $sigle . '-' . $groupe . '-' . $trimestreCode . '-' . $nomProf . '-' . $prenomProf . '.pdf';
+        $filename = 'PLAN-DE-COURS-' . $sigle . '-' . $groupe . '-' . $trimestreCode . '-' . $nomProf . '-' . $prenomProf . '-' . Str::random(8) . '.pdf';
         
         // Define the path where to save the file
         $savePath = 'C:\\Users\\santi\\Documents\\UQO-PLAN-DE-COURS\\EN_ATTENTE\\';
@@ -47,6 +50,14 @@ class PdfController extends Controller
         
         // Save the PDF to the specified location
         $pdf->save($savePath . $filename);
+
+        // Save request information to the database
+        PdfRequest::create([
+            'status' => 'En attente',
+            'filename' => $filename,
+            'requestor_first_name' => $prenomProf,
+            'requestor_last_name' => $nomProf,
+        ]);
         
         // Return a response indicating success
         return response()->json([
