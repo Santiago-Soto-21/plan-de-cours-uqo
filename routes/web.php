@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseDataController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\RequestsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,6 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/requests', [RequestsController::class, 'show'])->name('requests');
+    Route::get('/api/requests', [RequestsController::class, 'index'])->name('requests.index');
 });
 
 Route::post('/fetch-course-data', [CourseDataController::class, 'fetchCourseData'])->name('fetch.course.data');
