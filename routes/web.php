@@ -42,4 +42,6 @@ Route::post('/fetch-course-data', [CourseDataController::class, 'fetchCourseData
 
 Route::post('/generate-pdf', [PdfController::class, 'generate'])->name('generate.pdf');
 
+Route::post('/submit-pdf', [PdfController::class, 'submit'])->name('submit.pdf');
+
 require __DIR__.'/auth.php';
