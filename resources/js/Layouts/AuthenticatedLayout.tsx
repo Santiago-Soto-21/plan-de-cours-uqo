@@ -37,10 +37,10 @@ export default function Authenticated({
 
                             <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink
-                                    href={route('request')}
-                                    active={route().current('request')}
+                                    href={route('request_user')}
+                                    active={route().current('request_user')}
                                 >
-                                    Anciennes demandes
+                                    Vos anciennes demandes
                                 </NavLink>
                             </div>
 
@@ -50,6 +50,15 @@ export default function Authenticated({
                                     active={route().current('approvals')}
                                 >
                                     En attente
+                                </NavLink>
+                            </div>
+
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('request')}
+                                    active={route().current('request')}
+                                >
+                                    Anciennes demandes
                                 </NavLink>
                             </div>
 
@@ -168,10 +177,10 @@ export default function Authenticated({
 
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink
-                            href={route('request')}
-                            active={route().current('request')}
+                            href={route('request_user')}
+                            active={route().current('request_user')}
                         >
-                            Requests
+                            User_requests
                         </ResponsiveNavLink>
                     </div>
 
@@ -181,6 +190,15 @@ export default function Authenticated({
                             active={route().current('approvals')}
                         >
                             Approvals
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div className="space-y-1 pb-3 pt-2">
+                        <ResponsiveNavLink
+                            href={route('request')}
+                            active={route().current('request')}
+                        >
+                            Requests
                         </ResponsiveNavLink>
                     </div>
 

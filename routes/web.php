@@ -25,6 +25,10 @@ Route::get('/demandes', function () {
     return Inertia::render('Request');
 })->middleware(['auth', 'verified'])->name('request');
 
+Route::get('/demandes_utilisateur', function () {
+    return Inertia::render('RequestUser');
+})->middleware(['auth', 'verified'])->name('request_user');
+
 Route::get('/approbation', function () {
     return Inertia::render('Approvals');
 })->middleware(['auth', 'verified'])->name('approvals');
