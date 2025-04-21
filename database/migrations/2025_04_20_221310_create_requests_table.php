@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('requests', function (Blueprint $table) {
-            $table->id();
+            $table->id('id');
             $table->string('status')->default('En attente');
             $table->string('filename');
-            $table->string('requestor_first_name');
-            $table->string('requestor_last_name');
+            $table->string('requestor_id');
+            $table->string('pdf_path');
             $table->text('comment')->nullable();
             $table->timestamps(); // This creates both created_at and updated_at columns
         });

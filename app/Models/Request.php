@@ -15,10 +15,11 @@ class Request extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'status',
         'filename',
-        'requestor_first_name',
-        'requestor_last_name',
+        'requestor_id',
+        'pdf_path',
         'comment',
     ];
 }

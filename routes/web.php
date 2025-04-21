@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/requests', [RequestsController::class, 'show'])->name('requests');
     Route::get('/api/requests', [RequestsController::class, 'index'])->name('requests.index');
+    Route::put('/api/requests/update/{id}', [RequestsController::class, 'update'])->name('requests.update');
 });
 
 Route::post('/fetch-course-data', [CourseDataController::class, 'fetchCourseData'])->name('fetch.course.data');
