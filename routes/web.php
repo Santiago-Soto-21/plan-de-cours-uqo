@@ -17,42 +17,38 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/nouvelle_demande', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/demandes', function () {
-    return Inertia::render('Request');
-})->middleware(['auth', 'verified'])->name('request');
-
-Route::get('/demandes_utilisateur', function () {
-    return Inertia::render('RequestUser');
-})->middleware(['auth', 'verified'])->name('request_user');
-
-Route::get('/approbation', function () {
-    return Inertia::render('Approvals');
-})->middleware(['auth', 'verified'])->name('approvals');
-
-Route::get('/utilisateurs', function () {
-    return Inertia::render('Users');
-})->middleware(['auth', 'verified'])->name('users');
-
+// Shared routes (available to all authenticated users)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/nouvelle_demande', fn() => Inertia::render('Dashboard'))->name('dashboard');
     Route::get('/requests', [RequestsController::class, 'show'])->name('requests');
+
+    // Public API and form submission routes
     Route::get('/api/requests', [RequestsController::class, 'index'])->name('requests.index');
-    Route::put('/api/requests/update/{id}', [RequestsController::class, 'update'])->name('requests.update');
+    Route::post('/fetch-course-data', [CourseDataController::class, 'fetchCourseData'])->name('fetch.course.data');
+    Route::post('/generate-pdf', [PdfController::class, 'generate'])->name('generate.pdf');
+    Route::post('/submit-pdf', [PdfController::class, 'submit'])->name('submit.pdf');
 });
 
-Route::post('/fetch-course-data', [CourseDataController::class, 'fetchCourseData'])->name('fetch.course.data');
+// Admin only
+Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
+    Route::get('/utilisateurs', fn() => Inertia::render('Users'))->name('users');
+});
 
-Route::post('/generate-pdf', [PdfController::class, 'generate'])->name('generate.pdf');
+// Prof and Admin only
+Route::middleware(['auth', 'verified', 'role:prof|admin'])->group(function () {
+    Route::get('/demandes_utilisateur', fn() => Inertia::render('RequestUser'))->name('request_user');
+});
 
-Route::post('/submit-pdf', [PdfController::class, 'submit'])->name('submit.pdf');
+// Secretary, Director and Admin only
+Route::middleware(['auth', 'verified', 'role:secretary|director|admin'])->group(function () {
+    Route::get('/approbation', fn() => Inertia::render('Approvals'))->name('approvals');
+    Route::get('/demandes', fn() => Inertia::render('Request'))->name('request');
+    Route::put('/api/requests/update/{id}', [RequestsController::class, 'update'])->name('requests.update');
+});
 
 require __DIR__.'/auth.php';
