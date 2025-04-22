@@ -20,6 +20,7 @@ class Request extends Model
         'filename',
         'requestor_id',
         'pdf_path',
-        'comment',
+        'secretary_comment',
+        'director_comment',
     ];
 }

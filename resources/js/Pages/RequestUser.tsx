@@ -20,7 +20,8 @@ interface RequestRecord {
   filename: string;
   requestor_id: string;
   pdf_path: string;
-  comment: string | null;
+  secretary_comment: string | null;
+  director_comment: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -85,7 +86,8 @@ export default function Request({ auth }: RequestProps): JSX.Element {
         (request) =>
           request.filename.toLowerCase().includes(term) ||
           request.requestor_id.toLowerCase().includes(term) ||
-          (request.comment && request.comment.toLowerCase().includes(term))
+          (request.secretary_comment && request.secretary_comment.toLowerCase().includes(term)) ||
+          (request.director_comment && request.director_comment.toLowerCase().includes(term))
       );
     }
 
@@ -105,10 +107,12 @@ export default function Request({ auth }: RequestProps): JSX.Element {
   // Function to determine status color
   const getStatusColor = (status: string): string => {
     const upperStatus = status.toUpperCase();
-    if (upperStatus === "APPROUVÉE PAR SECRÉTAIRE")
+    if (upperStatus === "APPROUVÉE PAR DIRECTEUR")
       return "text-green-600 font-semibold";
-    if (upperStatus === "REFUSÉE") return "text-red-600 font-semibold";
-    return "text-yellow-600 font-semibold"; // Default for waiting or other statuses
+    if (upperStatus === "APPROUVÉE PAR SECRÉTAIRE")
+      return "text-yellow-600 font-semibold";
+    if (upperStatus === "REFUSÉE PAR SECRÉTAIRE" || upperStatus === "REFUSÉE PAR DIRECTEUR") return "text-red-600 font-semibold";
+    return "text-white-600 font-semibold"; // Default for waiting or other statuses
   };
 
   // Format date to be more readable
@@ -287,17 +291,32 @@ export default function Request({ auth }: RequestProps): JSX.Element {
                                 </td>
                               </tr>
 
-                              {request.comment && (
+                              {request.secretary_comment && (
                                 <tr
-                                  key={`comment-${request.id}`}
+                                  key={`secretary_comment-${request.id}`}
                                   className="bg-gray-50 dark:bg-gray-800"
                                 >
                                   <td
                                     colSpan={7}
                                     className="px-6 pb-4 pt-2 text-sm text-gray-700 dark:text-gray-200 italic"
                                   >
-                                    <strong>Commentaire:</strong>{" "}
-                                    {request.comment}
+                                    <strong>Commentaire du secrétaire:</strong>{" "}
+                                    {request.secretary_comment}
+                                  </td>
+                                </tr>
+                              )}
+
+                              {request.director_comment && (
+                                <tr
+                                  key={`director_comment-${request.id}`}
+                                  className="bg-gray-50 dark:bg-gray-800"
+                                >
+                                  <td
+                                    colSpan={7}
+                                    className="px-6 pb-4 pt-2 text-sm text-gray-700 dark:text-gray-200 italic"
+                                  >
+                                    <strong>Commentaire du directeur:</strong>{" "}
+                                    {request.director_comment}
                                   </td>
                                 </tr>
                               )}

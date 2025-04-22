@@ -30,14 +30,20 @@ class RequestsController extends Controller
     public function update(Request $request, $id)
     {
         $row = PdfRequest::find($id);
-        $row->status = $request->input('status');
-        $row->comment = $request->input('comment');
     
+    $row->status = $request->input('status');
+
+        if (is_null($request->input('director_comment'))) {
+            $row->secretary_comment = $request->input('secretary_comment');
+        } else {
+            $row->director_comment = $request->input('director_comment');
+        }
+
         $row->save();
 
         return response()->json([
-        'message' => 'Request updated successfully',
-        'request' => $request
+            'message' => 'Request updated successfully',
+            'request' => $row
         ], 200);
     }
 

@@ -11,7 +11,6 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Auth/Login', [
         'canLogin' => Route::has('login'),
-        //'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
@@ -44,9 +43,18 @@ Route::middleware(['auth', 'verified', 'role:prof|admin'])->group(function () {
     Route::get('/demandes_utilisateur', fn() => Inertia::render('RequestUser'))->name('request_user');
 });
 
+// Secretary and Admin only
+Route::middleware(['auth', 'verified', 'role:secretary|admin'])->group(function () {
+    Route::get('/approbation', fn() => Inertia::render('Approvals'))->name('approvals');
+});
+
+// Director and Admin only
+Route::middleware(['auth', 'verified', 'role:secretary|director|admin'])->group(function () {
+    Route::get('/approbation_directeur', fn() => Inertia::render('ApprovalsDirector'))->name('approvals_director');
+});
+
 // Secretary, Director and Admin only
 Route::middleware(['auth', 'verified', 'role:secretary|director|admin'])->group(function () {
-    Route::get('/approbation', fn() => Inertia::render('Approvals'))->name('approvals');
     Route::get('/demandes', fn() => Inertia::render('Request'))->name('request');
     Route::put('/api/requests/update/{id}', [RequestsController::class, 'update'])->name('requests.update');
 });

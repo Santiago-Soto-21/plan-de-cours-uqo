@@ -27,9 +27,7 @@ export default function Authenticated({
           <div className="flex h-16 justify-between">
             <div className="flex">
               <div className="flex shrink-0 items-center">
-                <Link href="/">
                   <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                </Link>
               </div>
 
               <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -52,13 +50,24 @@ export default function Authenticated({
                 </div>
               )}
 
-              {(isAdmin || isSecretary || isDirector) && (
+              {(isAdmin || isSecretary) && (
                 <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                   <NavLink
                     href={route("approvals")}
                     active={route().current("approvals")}
                   >
                     En attente
+                  </NavLink>
+                </div>
+              )}
+
+              {(isAdmin || isDirector) && (
+                <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                  <NavLink
+                    href={route("approvals_director")}
+                    active={route().current("approvals_director")}
+                  >
+                    Approuvée par secrétaire
                   </NavLink>
                 </div>
               )}
@@ -200,6 +209,17 @@ export default function Authenticated({
                 active={route().current("approvals")}
               >
                 Approvals
+              </ResponsiveNavLink>
+            </div>
+          )}
+
+          {(isAdmin || isDirector) && (
+            <div className="space-y-1 pb-3 pt-2">
+              <ResponsiveNavLink
+                href={route("approvals_director")}
+                active={route().current("approvals_director")}
+              >
+                Approvals_director
               </ResponsiveNavLink>
             </div>
           )}

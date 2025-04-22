@@ -37,7 +37,7 @@ export default function Request({ auth }: RequestProps): JSX.Element {
     const [error, setError] = useState<string | null>(null);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [expandedRequestId, setExpandedRequestId] = useState<number | null>(null);
-    const [secretaryComment, setSecretaryComment] = useState<string>('');
+    const [directorComment, setDirectorComment] = useState<string>('');
     const [actionLoading, setActionLoading] = useState<boolean>(false);
     const [actionMessage, setActionMessage] = useState<{text: string, type: 'success' | 'error'} | null>(null);
     
@@ -56,9 +56,9 @@ export default function Request({ auth }: RequestProps): JSX.Element {
             setLoading(true);
             const response = await axios.get<RequestRecord[]>(route('requests.index'));
             
-            // Filter requests to only include "EN ATTENTE" status
+            // Filter requests to only include "APPROUVÉE PAR SECRÉTAIRE" status
             const pendingRequests = response.data.filter(request => 
-                request.status.toUpperCase() === "EN ATTENTE"
+                request.status.toUpperCase() === "APPROUVÉE PAR SECRÉTAIRE"
             );
             
             setRequests(pendingRequests);
@@ -79,7 +79,7 @@ export default function Request({ auth }: RequestProps): JSX.Element {
             result = result.filter(request => 
                 request.filename.toLowerCase().includes(term) ||
                 request.requestor_id.toLowerCase().includes(term) ||
-                (request.secretary_comment && request.secretary_comment.toLowerCase().includes(term))
+                (request.director_comment && request.director_comment.toLowerCase().includes(term))
             );
         }
         
@@ -123,17 +123,17 @@ export default function Request({ auth }: RequestProps): JSX.Element {
     const toggleExpandRequest = (requestId: number): void => {
         if (expandedRequestId === requestId) {
             setExpandedRequestId(null);
-            setSecretaryComment('');
+            setDirectorComment('');
         } else {
             setExpandedRequestId(requestId);
-            setSecretaryComment('');
+            setDirectorComment('');
         }
         // Clear any action messages when toggling
         setActionMessage(null);
     };
 
     const handleUpdateRequestStatus = async (requestId: number, newStatus: string): Promise<void> => {
-        if (!secretaryComment.trim()) {
+        if (!directorComment.trim()) {
             setActionMessage({
                 text: 'Veuillez ajouter un commentaire avant de continuer',
                 type: 'error'
@@ -147,7 +147,7 @@ export default function Request({ auth }: RequestProps): JSX.Element {
             // Send update request to backend
             await axios.put(route('requests.update', requestId), {
                 status: newStatus,
-                secretary_comment: secretaryComment
+                director_comment: directorComment
             });
             
             // Update the local state to reflect the change
@@ -164,7 +164,7 @@ export default function Request({ auth }: RequestProps): JSX.Element {
             // Close the expanded section
             setTimeout(() => {
                 setExpandedRequestId(null);
-                setSecretaryComment('');
+                setDirectorComment('');
                 setActionMessage(null);
             }, 2000);
             
@@ -179,7 +179,7 @@ export default function Request({ auth }: RequestProps): JSX.Element {
     };
 
     const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-        setSecretaryComment(e.target.value);
+        setDirectorComment(e.target.value);
     };
 
     return (
@@ -293,7 +293,7 @@ export default function Request({ auth }: RequestProps): JSX.Element {
                                                                                     Commentaire
                                                                                 </label>
                                                                                 <textarea
-                                                                                    value={secretaryComment}
+                                                                                    value={directorComment}
                                                                                     onChange={handleCommentChange}
                                                                                     className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                                                                                     rows={3}
@@ -304,7 +304,7 @@ export default function Request({ auth }: RequestProps): JSX.Element {
                                                                             
                                                                             <div className="flex flex-col gap-2 sm:flex-row">
                                                                                 <button
-                                                                                    onClick={() => handleUpdateRequestStatus(request.id, "APPROUVÉE PAR SECRÉTAIRE")}
+                                                                                    onClick={() => handleUpdateRequestStatus(request.id, "APPROUVÉE PAR DIRECTEUR")}
                                                                                     className="flex items-center justify-center rounded-md bg-green-600 px-4 py-2 text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50"
                                                                                     disabled={actionLoading}
                                                                                 >
@@ -312,7 +312,7 @@ export default function Request({ auth }: RequestProps): JSX.Element {
                                                                                 </button>
                                                                                 
                                                                                 <button
-                                                                                    onClick={() => handleUpdateRequestStatus(request.id, "REFUSÉE PAR SECRÉTAIRE")}
+                                                                                    onClick={() => handleUpdateRequestStatus(request.id, "REFUSÉE PAR DIRECTEUR")}
                                                                                     className="flex items-center justify-center rounded-md bg-red-600 px-4 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50"
                                                                                     disabled={actionLoading}
                                                                                 >
