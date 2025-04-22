@@ -31,7 +31,7 @@ class RequestsController extends Controller
     {
         $row = PdfRequest::find($id);
     
-    $row->status = $request->input('status');
+        $row->status = $request->input('status');
 
         if (is_null($request->input('director_comment'))) {
             $row->secretary_comment = $request->input('secretary_comment');

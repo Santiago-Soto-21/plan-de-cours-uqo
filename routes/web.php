@@ -4,6 +4,7 @@ use App\Http\Controllers\CourseDataController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,7 +36,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Admin only
 Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {
-    Route::get('/utilisateurs', fn() => Inertia::render('Users'))->name('users');
+    Route::get('/utilisateurs', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/admin/utilisateurs/fetch', [UserController::class, 'fetch'])->name('admin.users.fetch');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::post('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
 // Prof and Admin only
