@@ -56,7 +56,7 @@ class PdfController extends Controller
         $pdf->save($savePath . $filename);
 
         // PDF URL path to access
-        $pdf_path = url('http://127.0.0.1:8080/admin/' . $filename);
+        $pdf_path = url('http://localhost:8080/' . $usernamePart . '/' . $filename);
 
         // Save request information to the database
         PdfRequest::create([
