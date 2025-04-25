@@ -2,8 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>UQO - DII - Plan du cours INF1563</title>
-    <meta name="author" content="Baaziz, Nadia" />
+    <title>UQO - Plan du cours {!! $data['sigle'] !!}</title>
     <style>
         @font-face {
           font-family: 'verdana';
