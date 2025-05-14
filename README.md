@@ -8,7 +8,8 @@ The prototype developed is based on a modern architecture combining React, TypeS
 
 The website uses role-based access control to determine which functionalities are available to each user. This ensures that the workflow is followed correctly from start to finish.
 
-**User Roles**
+**User Roles**:
+
 `prof`: Submits syllabus creation requests.
 
 `secretary`: Reviews submitted requests, either approving or rejecting them. May leave a comment for revision.
@@ -17,7 +18,8 @@ The website uses role-based access control to determine which functionalities ar
 
 `admin`: Has full access to the system and can manage user accounts, roles, and system configurations.
 
-**Workflow**
+**Workflow**:
+
 `prof submits a request → secretary approves or rejects it → director approves or rejects it`
 
 ## How to run
@@ -54,17 +56,17 @@ The website uses role-based access control to determine which functionalities ar
 7. Login using any of the following test accounts:
 
 - **Admin account**  
-  **Email:** `admin@example.com`  
-  **Password:** `password`
+  *Email:* `admin@example.com`  
+  *Password:* `password`
 
 - **Director account**  
-  **Email:** `director@example.com`  
-  **Password:** `password`
+  *Email:* `director@example.com`  
+  *Password:* `password`
 
 - **Secretary account**  
-  **Email:** `secretary@example.com`  
-  **Password:** `password`
+  *Email:* `secretary@example.com`  
+  *Password:* `password`
 
 - **Professor account**  
-  **Email:** `prof@example.com`  
-  **Password:** `password`
+  *Email:* `prof@example.com`  
+  *Password:* `password`
